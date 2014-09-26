@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in vagrant-nixos.gemspec
+# Specify your gem's dependencies in vagrant-boot2docker.gemspec
 gemspec
 
 group :development do

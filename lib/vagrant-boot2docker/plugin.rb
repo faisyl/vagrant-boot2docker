@@ -12,9 +12,6 @@ end
 
 module VagrantPlugins
 	module Boot2docker
-
-		@@nix_imports = {}
-
 		class Plugin < Vagrant.plugin("2")
 			name "boot2docker"
 			description <<-DESC
