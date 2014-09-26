@@ -7,7 +7,7 @@ module VagrantPlugins
         def self.configure_networks(machine, networks)
           machine.communicate.tap do |comm|
             networks.each do |n|
-              if "0.0.0.0" != n[:ip]
+              if n.key?("ip")
 	              ifc = "/sbin/ifconfig eth#{n[:interface]}"
 	              broadcast = (IPAddr.new(n[:ip]) | (~ IPAddr.new(n[:netmask]))).to_s
 	              comm.sudo("#{ifc} down")
