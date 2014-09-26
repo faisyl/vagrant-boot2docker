@@ -9,10 +9,11 @@ module VagrantPlugins
             networks.each do |n|
               if n.key?("ip")
 	              ifc = "/sbin/ifconfig eth#{n[:interface]}"
-                iface = "eth#{n[:interface]}"
+                #iface = "eth#{n[:interface]}"
 	              broadcast = (IPAddr.new(n[:ip]) | (~ IPAddr.new(n[:netmask]))).to_s
-                # First kill the udhcp client for this interface
-                comm.sudo("ps -ef |grep dhcp | grep #{iface} | grep -v grep | tr -s ' ' | cut -d' ' -f2| xargs kill")
+                # First kill the udhcp client for this interface - does not work. Disable for now
+                # As a workaround, adding something similar to /var/lib/boot2docker/bootlocal.sh should fix it...
+                #comm.sudo("ps -ef |grep dhcp | grep #{iface} | grep -v grep | tr -s ' ' | cut -d' ' -f2| xargs kill")
 	              comm.sudo("#{ifc} down")
 	              comm.sudo("#{ifc} #{n[:ip]} netmask #{n[:netmask]} broadcast #{broadcast}")
 	              comm.sudo("#{ifc} up")
