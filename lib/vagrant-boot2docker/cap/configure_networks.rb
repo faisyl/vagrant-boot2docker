@@ -1,7 +1,7 @@
 require "ipaddr"
 
 module VagrantPlugins
-  module GuestTinyCore
+  module Boot2docker
     module Cap
       class ConfigureNetworks
         def self.configure_networks(machine, networks)
