@@ -16,13 +16,10 @@ $ vagrant plugin install vagrant-boot2docker
 Vagrant.configure("2") do |config|
 ...
   	# Setup networking
-	config.vm.network "public_network", ip: "0.0.0.0"
+	config.vm.network "public_network"
 ...
 end
 ```
 
-In the above `Vagrantfile` example, setting the ip to `0.0.0.0` effectively switches off the forced ip configuration that the current tinycore implementaton does (which fails without a valid IP address).
+With the default tinycore implementation, this would break since it didn't handle dhcp correctly. For boot2docker, if there's no valid IP defined, it's simply ignored.
 
-## Issues
-
-This should ideally just work without a valid IP (or invalid IP in our case). That's an exercise for v 0.0.2 :)
